@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Animation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+        }
+        #animation-container {
+            width: 100%;
+            max-width: 375px; /* Standard phone width */
+            height: auto;
+            aspect-ratio: 9 / 16; /* Phone aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <div id="animation-container"></div>
+
+    <script>
+        const animation = lottie.loadAnimation({
+            container: document.getElementById('animation-container'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: false,
+            path: 'Frame-6.json'
+        });
+
+        document.getElementById('animation-container').addEventListener('click', () => {
+            animation.play();
+        });
+    </script>
+</body>
+</html>
