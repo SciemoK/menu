@@ -2,40 +2,143 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phone Animation</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Digital Menu</title>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    
     <style>
-        body {
+        /* 1. BROWSER CANVAS */
+        body, html {
             margin: 0;
             padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #e8e8e8; /* Light grey so the white box stands out */
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #000;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
-        #animation-container {
-            width: 100vw;
-            height: 100vh;
+
+        /* 2. THE APP CONTAINER (Rounded & Sized) */
+        #main-container {
+            /* This calculates the height based on the width to keep the 1440x2560 ratio */
+            width: 90vw; 
+            max-width: 430px; 
+            aspect-ratio: 1440 / 2560; 
+            
+            /* This ensures it doesn't grow taller than the user's screen */
+            max-height: 90vh; 
+            
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            
+            /* Keeps it centered */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 3. PAGES */
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s ease;
+        }
+
+        #animation-page { z-index: 2; }
+        
+        #language-page { 
+            z-index: 1; 
+            opacity: 0; 
+            display: none; 
+            background-color: #ffffff;
+        }
+
+        /* 4. LANGUAGE BUTTONS */
+        .btn-group {
+            width: 75%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lang-btn {
+            padding: 18px;
+            border: 1px solid #f0f0f0;
+            background: #fafafa;
+            border-radius: 15px; /* Matches the rounded vibe */
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .lang-btn:active {
+            background-color: #eeeeee;
+            transform: scale(0.97);
+        }
+
+        h2 { 
+            color: #222; 
+            margin-bottom: 30px; 
+            font-weight: 600; 
+            letter-spacing: -0.5px;
         }
     </style>
 </head>
 <body>
-    <div id="animation-container"></div>
+
+    <div id="main-container">
+
+        <div id="animation-page" class="page">
+            <lottie-player 
+                id="introLottie"
+                src="assets/welcome.json" 
+                speed="1" 
+                style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.01);"
+                autoplay>
+            </lottie-player>
+        </div>
+
+        <div id="language-page" class="page">
+            <h2>Select Language</h2>
+            <div class="btn-group">
+                <button class="lang-btn" onclick="goToMenu('it')">Italiano</button>
+                <button class="lang-btn" onclick="goToMenu('en')">English</button>
+                <button class="lang-btn" onclick="goToMenu('de')">Deutsch</button>
+            </div>
+        </div>
+
+    </div>
 
     <script>
-        const animation = lottie.loadAnimation({
-            container: document.getElementById('animation-container'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: false,
-            path: 'Frame-6.json'
+        const player = document.querySelector("#introLottie");
+        const animPage = document.getElementById("animation-page");
+        const langPage = document.getElementById("language-page");
+
+        player.addEventListener("complete", () => {
+            animPage.style.opacity = "0";
+            setTimeout(() => {
+                animPage.style.display = "none";
+                langPage.style.display = "flex";
+                setTimeout(() => { langPage.style.opacity = "1"; }, 50);
+            }, 600);
         });
 
-        document.getElementById('animation-container').addEventListener('click', () => {
-            animation.play();
-        });
+        function goToMenu(lang) {
+            alert("Perfect! Now we load the " + lang + " menu.");
+        }
     </script>
 </body>
 </html>
