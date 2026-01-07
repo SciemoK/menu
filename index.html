@@ -4,98 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Digital Menu</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    
-    <style>
-        /* 1. BROWSER CANVAS */
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #e8e8e8; /* Light grey so the white box stands out */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        }
-
-        /* 2. THE APP CONTAINER (Rounded & Sized) */
-        #main-container {
-            /* This calculates the height based on the width to keep the 1440x2560 ratio */
-            width: 90vw; 
-            max-width: 430px; 
-            aspect-ratio: 1440 / 2560; 
-            
-            /* This ensures it doesn't grow taller than the user's screen */
-            max-height: 90vh; 
-            
-            background-color: #ffffff;
-            position: relative;
-            overflow: hidden;
-            border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            
-            /* Keeps it centered */
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* 3. PAGES */
-        .page {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.6s ease;
-        }
-
-        #animation-page { z-index: 2; }
-        
-        #language-page { 
-            z-index: 1; 
-            opacity: 0; 
-            display: none; 
-            background-color: #ffffff;
-        }
-
-        /* 4. LANGUAGE BUTTONS */
-        .btn-group {
-            width: 75%;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .lang-btn {
-            padding: 18px;
-            border: 1px solid #f0f0f0;
-            background: #fafafa;
-            border-radius: 15px; /* Matches the rounded vibe */
-            font-size: 16px;
-            font-weight: 500;
-            color: #333;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .lang-btn:active {
-            background-color: #eeeeee;
-            transform: scale(0.97);
-        }
-
-        h2 { 
-            color: #222; 
-            margin-bottom: 30px; 
-            font-weight: 600; 
-            letter-spacing: -0.5px;
-        }
-    </style>
 </head>
 <body>
 
@@ -106,19 +16,26 @@
                 id="introLottie"
                 src="assets/welcome.json" 
                 speed="1" 
-                style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.01);"
+                style="width: 100%; height: 100%; object-fit: cover;"
                 autoplay>
             </lottie-player>
         </div>
 
         <div id="language-page" class="page">
-            <h2>Select Language</h2>
-            <div class="btn-group">
-                <button class="lang-btn" onclick="goToMenu('it')">Italiano</button>
-                <button class="lang-btn" onclick="goToMenu('en')">English</button>
-                <button class="lang-btn" onclick="goToMenu('de')">Deutsch</button>
+            <div class="menu-pill-container">
+                <button class="lang-btn active" onclick="selectLang('it')">BAR</button>
+                <button class="lang-btn" onclick="selectLang('en')">EN</button>
+                <button class="lang-btn" onclick="selectLang('de')">DE</button>
             </div>
         </div>
+
+        <div id="page-overlay" onclick="toggleFooter()"></div>
+
+        <div id="mountain-footer">
+            <div class="footer-trigger" onclick="toggleFooter()">
+                <div id="footer-arrow">↑</div>
+            </div>
+            </div>
 
     </div>
 
@@ -126,18 +43,77 @@
         const player = document.querySelector("#introLottie");
         const animPage = document.getElementById("animation-page");
         const langPage = document.getElementById("language-page");
+        const footer = document.getElementById("mountain-footer");
+        const overlay = document.getElementById('page-overlay');
+        const arrow = document.getElementById('footer-arrow');
 
+        /* TIMING 1: TRIGGER MOUNTAIN ENTRANCE 
+           This happens while the animation is still playing.
+           Adjust 2000 (2 seconds) to match your animation sweet spot.
+        */
+        setTimeout(() => {
+            footer.classList.add("visible");
+        }, 2000); 
+
+        /* TIMING 2: ANIMATION ENDS 
+           Transition from the video to the language buttons.
+        */
         player.addEventListener("complete", () => {
             animPage.style.opacity = "0";
+            
             setTimeout(() => {
                 animPage.style.display = "none";
                 langPage.style.display = "flex";
-                setTimeout(() => { langPage.style.opacity = "1"; }, 50);
+                
+                // Trigger fade-in for buttons
+                setTimeout(() => { 
+                    langPage.style.opacity = "1"; 
+                }, 50);
             }, 600);
         });
 
-        function goToMenu(lang) {
-            alert("Perfect! Now we load the " + lang + " menu.");
+        /* INTERACTION: FOOTER OPEN/CLOSE 
+           Handles the blur, the mountain slide, and the arrow rotation.
+        */
+        function toggleFooter() {
+            if (!footer.classList.contains('open')) {
+                // OPENING
+                footer.classList.add('open');
+                overlay.style.display = 'block';
+                setTimeout(() => { overlay.style.opacity = '1'; }, 10);
+                arrow.innerHTML = '✕';
+            } else {
+                // CLOSING
+                footer.classList.remove('open');
+                overlay.style.opacity = '0';
+                setTimeout(() => { 
+                    overlay.style.display = 'none'; 
+                }, 400);
+                arrow.innerHTML = '↑';
+            }
+        }
+
+        /* LANGUAGE SELECTION 
+           Placeholder for your next step!
+        */
+        function selectLang(lang) {
+            // 1. Show the mountain peaks (Peeking state)
+            footer.classList.add("visible");
+
+            // 2. Set the correct footer image based on language
+            if (lang === 'it') {
+                footer.style.backgroundImage = "url('images/footer-it.png')";
+            } else if (lang === 'en') {
+                footer.style.backgroundImage = "url('images/footer-en.png')";
+            } else if (lang === 'de') {
+                footer.style.backgroundImage = "url('images/footer-deutsch.png')";
+            }
+
+            // 3. Jump to the Italian Menu
+            // This looks for the 'ita' folder, then 'digital-menu' folder, then the pizzeria.html
+            setTimeout(() => {
+                window.location.href = "ita/digital-menu/pizzeria.html";
+            }, 600); // Slight delay so the user sees the button click/footer rise
         }
     </script>
 </body>
