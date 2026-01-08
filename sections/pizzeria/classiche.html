@@ -1,0 +1,141 @@
+<div class="menu-item group">
+    <button onclick="toggleSection(this)" class="w-full relative h-16 flex items-center justify-between overflow-hidden group px-6 rounded-t-[25px] rounded-b-[25px] group-[.active]:rounded-b-none transition-all duration-300 shadow-lg">
+        <div class="absolute inset-0 bg-[#333333]"></div>
+        
+        <div class="relative z-10 text-left">
+            <span class="block text-white font-black text-xl tracking-tighter uppercase">Le Classiche</span>
+            <span class="block text-gray-400 text-[9px] uppercase tracking-[0.2em] font-bold">Tradizione Italiana</span>
+        </div>
+
+        <div class="relative z-10 border border-white/10 p-1.5 rounded-full bg-white/5">
+            <svg class="chevron w-4 h-4 text-white transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/>
+            </svg>
+        </div>
+    </button>
+
+    <div class="accordion-content">
+        <div class="bg-white rounded-b-[25px] p-6 shadow-sm border-t border-gray-50 space-y-8">
+            
+            <!-- Pizza Marinara -->
+            <div class="flex justify-between items-baseline group border-b border-gray-100 pb-4">
+                <div class="pr-8">
+                    <h3 class="text-xl font-serif font-bold text-gray-900">Pizza Marinara</h3>
+                    <p class="text-sm text-gray-600 mt-1 font-light leading-relaxed">Pomodoro, aglio, origano</p>
+                    <span class="inline-block mt-2 text-[10px] text-gray-400 border border-gray-200 px-1.5 py-0.5 rounded">Allergeni: 1</span>
+                </div>
+                <div class="whitespace-nowrap">
+                    <span class="text-lg font-serif font-bold accent-text">€ 7,00</span>
+                </div>
+            </div>
+
+            <!-- Pizza Margherita -->
+            <div class="flex justify-between items-baseline group border-b border-gray-100 pb-4">
+                <div class="pr-8">
+                    <h3 class="text-xl font-serif font-bold text-gray-900">Pizza Margherita</h3>
+                    <p class="text-sm text-gray-600 mt-1 font-light leading-relaxed">Pomodoro, mozzarella</p>
+                    <span class="inline-block mt-2 text-[10px] text-gray-400 border border-gray-200 px-1.5 py-0.5 rounded">Allergeni: 1, 7</span>
+                </div>
+                <div class="whitespace-nowrap">
+                    <span class="text-lg font-serif font-bold accent-text">€ 8,00</span>
+                </div>
+            </div>
+
+            <!-- Pizza ai funghi -->
+            <div class="flex justify-between items-baseline group border-b border-gray-100 pb-4">
+                <div class="pr-8">
+                    <h3 class="text-xl font-serif font-bold text-gray-900">Pizza ai funghi</h3>
+                    <p class="text-sm text-gray-600 mt-1 font-light leading-relaxed">Pomodoro, mozzarella e Champignon</p>
+                    <span class="inline-block mt-2 text-[10px] text-gray-400 border border-gray-200 px-1.5 py-0.5 rounded">Allergeni: 1, 7</span>
+                </div>
+                <div class="whitespace-nowrap">
+                    <span class="text-lg font-serif font-bold accent-text">€ 10,00</span>
+                </div>
+            </div>
+
+            <!-- Pizza prosciutto e funghi -->
+            <div class="flex justify-between items-baseline group border-b border-gray-100 pb-4">
+                <div class="pr-8">
+                    <h3 class="text-xl font-serif font-bold text-gray-900">Pizza prosciutto e funghi</h3>
+                    <p class="text-sm text-gray-600 mt-1 font-light leading-relaxed">Pom., mozz., prosciutto, funghi</p>
+                    <span class="inline-block mt-2 text-[10px] text-gray-400 border border-gray-200 px-1.5 py-0.5 rounded">Allergeni: 1, 7</span>
+                </div>
+                <div class="whitespace-nowrap">
+                    <span class="text-lg font-serif font-bold accent-text">€ 11,00</span>
+                </div>
+            </div>
+
+            <!-- Pizza al prosciutto -->
+            <div class="flex justify-between items-baseline group border-b border-gray-100 pb-4">
+                <div class="pr-8">
+                    <h3 class="text-xl font-serif font-bold text-gray-900">Pizza al prosciutto</h3>
+                    <p class="text-sm text-gray-600 mt-1 font-light leading-relaxed">Pom., mozz., prosciutto</p>
+                    <span class="inline-block mt-2 text-[10px] text-gray-400 border border-gray-200 px-1.5 py-0.5 rounded">Allergeni: 1, 7</span>
+                </div>
+                <div class="whitespace-nowrap">
+                    <span class="text-lg font-serif font-bold accent-text">€ 10,00</span>
+                </div>
+            </div>
+
+            <!-- Diavola -->
+            <div class="flex justify-between items-baseline group border-b border-gray-100 pb-4">
+                <div class="pr-8">
+                    <h3 class="text-xl font-serif font-bold text-gray-900">Diavola</h3>
+                    <p class="text-sm text-gray-600 mt-1 font-light leading-relaxed">Pom., mozz., salamino piccante</p>
+                    <span class="inline-block mt-2 text-[10px] text-gray-400 border border-gray-200 px-1.5 py-0.5 rounded">Allergeni: 1, 7</span>
+                </div>
+                <div class="whitespace-nowrap">
+                    <span class="text-lg font-serif font-bold accent-text">€ 10,00</span>
+                </div>
+            </div>
+
+            <!-- Pizza 4 formaggi -->
+            <div class="flex justify-between items-baseline group border-b border-gray-100 pb-4">
+                <div class="pr-8">
+                    <h3 class="text-xl font-serif font-bold text-gray-900">Pizza 4 formaggi</h3>
+                    <p class="text-sm text-gray-600 mt-1 font-light leading-relaxed">Mozzarella, gorgonzola, parmigiano, emmenthal</p>
+                    <span class="inline-block mt-2 text-[10px] text-gray-400 border border-gray-200 px-1.5 py-0.5 rounded">Allergeni: 1, 7</span>
+                </div>
+                <div class="whitespace-nowrap">
+                    <span class="text-lg font-serif font-bold accent-text">€ 10,50</span>
+                </div>
+            </div>
+
+            <!-- Pizza 4 stagioni -->
+            <div class="flex justify-between items-baseline group border-b border-gray-100 pb-4">
+                <div class="pr-8">
+                    <h3 class="text-xl font-serif font-bold text-gray-900">Pizza 4 stagioni</h3>
+                    <p class="text-sm text-gray-600 mt-1 font-light leading-relaxed">Pomodoro, mozzarella, prosciutto, funghi, carciofi, olive</p>
+                    <span class="inline-block mt-2 text-[10px] text-gray-400 border border-gray-200 px-1.5 py-0.5 rounded">Allergeni: 1, 7</span>
+                </div>
+                <div class="whitespace-nowrap">
+                    <span class="text-lg font-serif font-bold accent-text">€ 11,00</span>
+                </div>
+            </div>
+
+            <!-- Pizza Capricciosa -->
+            <div class="flex justify-between items-baseline group border-b border-gray-100 pb-4">
+                <div class="pr-8">
+                    <h3 class="text-xl font-serif font-bold text-gray-900">Pizza Capricciosa</h3>
+                    <p class="text-sm text-gray-600 mt-1 font-light leading-relaxed">Pomodoro, mozzarella, cotto, funghi, carciofi, olive, capperi</p>
+                    <span class="inline-block mt-2 text-[10px] text-gray-400 border border-gray-200 px-1.5 py-0.5 rounded">Allergeni: 1, 7</span>
+                </div>
+                <div class="whitespace-nowrap">
+                    <span class="text-lg font-serif font-bold accent-text">€ 11,00</span>
+                </div>
+            </div>
+
+            <!-- Pizza tonno e cipolla -->
+            <div class="flex justify-between items-baseline group border-b border-gray-100 pb-4">
+                <div class="pr-8">
+                    <h3 class="text-xl font-serif font-bold text-gray-900">Pizza tonno e cipolla</h3>
+                    <p class="text-sm text-gray-600 mt-1 font-light leading-relaxed">Pom., mozz., tonno e cipolla</p>
+                    <span class="inline-block mt-2 text-[10px] text-gray-400 border border-gray-200 px-1.5 py-0.5 rounded">Allergeni: 1, 7, 4</span>
+                </div>
+                <div class="whitespace-nowrap">
+                    <span class="text-lg font-serif font-bold accent-text">€ 11,00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

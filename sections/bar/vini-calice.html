@@ -1,0 +1,93 @@
+<div class="menu-item group">
+    <button onclick="toggleSection(this)" class="w-full relative h-16 flex items-center justify-between overflow-hidden group px-6 rounded-t-[25px] rounded-b-[25px] group-[.active]:rounded-b-none transition-all duration-300 shadow-lg">
+        <div class="absolute inset-0 bg-[#6b0a23]"></div>
+        
+        <div class="relative z-10 text-left">
+            <span class="block text-white font-black text-xl tracking-tighter uppercase">Vini al Calice</span>
+            <span class="block text-gray-400 text-[9px] uppercase tracking-[0.2em] font-bold">Bianchi, Rossi e Bollicine</span>
+        </div>
+
+        <div class="relative z-10 border border-white/10 p-1.5 rounded-full bg-white/5">
+            <svg class="chevron w-4 h-4 text-white transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/>
+            </svg>
+        </div>
+    </button>
+    
+    <div class="accordion-content">
+        <div class="bg-white rounded-b-[25px] p-3 pt-4 space-y-1.5 shadow-2xl border-t border-gray-100">
+            
+            <div class="flex justify-between border-b border-gray-50 pb-1 mt-2"><span class="italic text-gray-400 font-bold uppercase text-[10px]">Vini Rossi</span></div>
+            <div class="flex justify-between items-start bg-gray-100/70 px-4 py-2 rounded-full">
+                <div class="flex-1 pr-4">
+                    <p class="italic text-sm text-gray-700 font-bold">Sassella di Valtellina</p>
+                    <p class="text-xs text-gray-400 leading-tight italic">Produzione locale</p>
+                </div>
+                <span class="font-bold text-sm text-black">€ 6,00</span>
+            </div>
+            <div class="flex justify-between items-start bg-gray-100/70 px-4 py-2 rounded-full">
+                <div class="flex-1 pr-4">
+                    <p class="italic text-sm text-gray-700 font-bold">Sforzato di Valtellina</p>
+                    <p class="text-xs text-gray-400 leading-tight italic">Vino rosso passito valtellinese</p>
+                </div>
+                <span class="font-bold text-sm text-black">€ 12,00</span>
+            </div>
+            <div class="flex justify-between items-start bg-gray-100/70 px-4 py-2 rounded-full">
+                <div class="flex-1 pr-4">
+                    <p class="italic text-sm text-gray-700 font-bold">Valpolicella Ripasso</p>
+                    <p class="text-xs text-gray-400 leading-tight italic">Vino rosso veneto</p>
+                </div>
+                <span class="font-bold text-sm text-black">€ 8,00</span>
+            </div>
+            <div class="flex justify-between items-start bg-gray-100/70 px-4 py-2 rounded-full">
+                <div class="flex-1 pr-4">
+                    <p class="italic text-sm text-gray-700 font-bold">Amarone</p>
+                    <p class="text-xs text-gray-400 leading-tight italic">Vino rosso passito veneto</p>
+                </div>
+                <span class="font-bold text-sm text-black">€ 12,00</span>
+            </div>
+
+            <div class="mt-4 flex justify-between border-b border-gray-50 pb-1"><span class="italic text-gray-400 font-bold uppercase text-[10px]">Vini Bianchi</span></div>
+            <div class="flex justify-between items-start bg-gray-100/70 px-4 py-2 rounded-full">
+                <div class="flex-1 pr-4">
+                    <p class="italic text-sm text-gray-700 font-bold">Pinot Grigio</p>
+                    <p class="text-xs text-gray-400 leading-tight italic">Vino bianco friulano</p>
+                </div>
+                <span class="font-bold text-sm text-black">€ 6,00</span>
+            </div>
+            <div class="flex justify-between items-start bg-gray-100/70 px-4 py-2 rounded-full">
+                <div class="flex-1 pr-4">
+                    <p class="italic text-sm text-gray-700 font-bold">Lugana / Sauvignon / Chardonnay</p>
+                    <p class="text-xs text-gray-400 leading-tight italic">Vini bianchi italiani</p>
+                </div>
+                <span class="font-bold text-sm text-black">€ 7,00</span>
+            </div>
+
+            <div class="mt-4 flex justify-between border-b border-gray-50 pb-1"><span class="italic text-gray-400 font-bold uppercase text-[10px]">Bollicine</span></div>
+            <div class="flex justify-between items-start bg-gray-100/70 px-4 py-2 rounded-full">
+                <div class="flex-1 pr-4">
+                    <p class="italic text-sm text-gray-700 font-bold">Franciacorta</p>
+                    <p class="text-xs text-gray-400 leading-tight italic">Spumante metodo classico lombardo</p>
+                </div>
+                <span class="font-bold text-sm text-black">€ 8,00</span>
+            </div>
+            <div class="flex justify-between items-start bg-gray-100/70 px-4 py-2 rounded-full">
+                <div class="flex-1 pr-4">
+                    <p class="italic text-sm text-gray-700 font-bold">Prosecco</p>
+                    <p class="text-xs text-gray-400 leading-tight italic">Spumante veneto</p>
+                </div>
+                <span class="font-bold text-sm text-black">€ 6,00</span>
+            </div>
+
+            <div class="mt-4 flex justify-between border-b border-gray-50 pb-1"><span class="italic text-gray-400 font-bold uppercase text-[10px]">Rosé</span></div>
+            <div class="flex justify-between items-start bg-gray-100/70 px-4 py-2 rounded-full">
+                <div class="flex-1 pr-4">
+                    <p class="italic text-sm text-gray-700 font-bold">Lagrein Rosé</p>
+                    <p class="text-xs text-gray-400 leading-tight italic">Vino rosato altoatesino</p>
+                </div>
+                <span class="font-bold text-sm text-black">€ 7,00</span>
+            </div>
+
+        </div>
+    </div>
+</div>

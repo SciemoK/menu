@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ristorante - CIAONE</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================
+           FRAME & LAYOUT (Consistency with Bar/Intro)
+           ========================================== */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #e8e8e8; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', sans-serif !important;
+            overflow: hidden;
+        }
+
+        #main-container {
+            width: 90vw;
+            max-width: 400px;
+            aspect-ratio: 1440 / 2560;
+            max-height: 90vh;
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Navigation - Stay inside container */
+        .nav-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px;
+            width: 100%;
+        }
+
+        .nav-glass { 
+            background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.4); 
+            border-radius: 9999px;
+            display: flex;
+            padding: 6px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-nav { 
+            flex: 1;
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 9999px;
+            transition: all 0.3s ease; 
+            font-size: 11px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px;
+            color: #9ca3af;
+        }
+
+        .active-page { 
+            background-color: #000; 
+            color: #fff !important; 
+        }
+
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 40;
+            height: 140px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Menu Content Scroll Area */
+        #menu-content {
+            padding-top: 150px;
+            height: 100%;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+        #menu-content::-webkit-scrollbar { display: none; }
+
+        /* Accordion Logic */
+        .menu-item { overflow: visible !important; position: relative; }
+        .accordion-content { 
+            max-height: 0; 
+            overflow: visible !important; 
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease; 
+            opacity: 0; 
+            pointer-events: none;
+        }
+        .menu-item.active .accordion-content { 
+            max-height: 3000px; 
+            opacity: 1; 
+            pointer-events: auto;
+            margin-bottom: 24px;
+        }
+        .menu-item.active .chevron { transform: rotate(180deg); }
+        .chevron { transition: transform 0.5s ease; }
+        .shadow-alpine { box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08); }
+
+        /* ==========================================
+           MOUNTAIN FOOTER STYLES
+           ========================================== */
+        #page-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: none;
+            z-index: 1500;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        #mountain-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: top;
+            transform: translateY(70%); 
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), background-image 0.3s ease;
+        }
+
+        #mountain-footer.open { transform: translateY(15%); }
+
+        #footer-arrow {
+            position: absolute;
+            top: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #000;
+            font-size: 20px;
+            font-weight: bold;
+            transition: top 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #mountain-footer.open #footer-arrow { top: 15px; }
+        
+        .footer-trigger {
+            width: 100%;
+            height: 80px;
+            position: absolute;
+            top: 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-container">
+
+        <nav class="nav-container">
+            <div class="nav-glass">
+                <a href="bar.html" class="btn-nav">Bar</a>
+                <a href="ristorante.html" class="btn-nav active-page">Ristorante</a>
+                <a href="pizzeria.html" class="btn-nav">Pizzeria</a>
+                <a href="vini.html" class="btn-nav">Vini</a>
+            </div>
+        </nav>
+
+        <header id="menu-header" class="bg-white shadow-sm overflow-hidden">
+            <img src="images/ristorante.jpg" alt="Ristorante Header" class="w-full h-full object-cover block">
+            <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-black/40"></div>
+            <div class="absolute bottom-3 left-4">
+                <h1 class="text-3xl font-[900] text-gray-900 uppercase">Ristorante</h1>
+                <p class="text-gray-600 text-sm font-medium">La nostra cucina tipica</p>
+            </div>
+        </header>
+
+        <main id="menu-content" class="px-4 space-y-4">
+            <div id="antipasti"></div>
+            <div id="primi"></div>
+            <div id="secondi"></div>
+            <div id="contorni"></div>
+            <div id="kids"></div>
+            <div class="h-[200px] w-full"></div>
+        </main>
+
+        <div id="page-overlay" onclick="toggleFooter()"></div>
+
+        <div id="mountain-footer">
+            <div class="footer-trigger" onclick="toggleFooter()">
+                <div id="footer-arrow">↑</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // 1. Language & Footer Logic
+        const urlParams = new URLSearchParams(window.location.search);
+        const lang = urlParams.get('lang') || 'it';
+        const footer = document.getElementById('mountain-footer');
+        
+        if(lang === 'en') footer.style.backgroundImage = "url('../../images/footer-en.png')";
+        else if(lang === 'de') footer.style.backgroundImage = "url('../../images/footer-deutsch.png')";
+        else footer.style.backgroundImage = "url('../../images/footer-it.png')";
+
+        // 2. Load Content Sections
+        async function loadSection(id, path) {
+            try {
+                const response = await fetch(path);
+                const html = await response.text();
+                document.getElementById(id).innerHTML = html;
+            } catch (err) { console.error("Errore:", id); }
+        }
+
+        window.onload = () => {
+            loadSection('antipasti', 'sections/ristorante/antipasti.html');
+            loadSection('primi', 'sections/ristorante/primi.html');
+            loadSection('secondi', 'sections/ristorante/secondi.html');
+            loadSection('contorni', 'sections/ristorante/contorni.html');
+            loadSection('kids', 'sections/ristorante/kids.html');
+        };
+
+        // 3. Toggle Logic
+        function toggleFooter() {
+            const overlay = document.getElementById('page-overlay');
+            const arrow = document.getElementById('footer-arrow');
+            
+            if (!footer.classList.contains('open')) {
+                footer.classList.add('open');
+                overlay.style.display = 'block';
+                setTimeout(() => overlay.style.opacity = '1', 10);
+                arrow.innerHTML = '✕';
+            } else {
+                footer.classList.remove('open');
+                overlay.style.opacity = '0';
+                setTimeout(() => overlay.style.display = 'none', 400);
+                arrow.innerHTML = '↑';
+            }
+        }
+
+        // 4. Scroll Effects
+        const header = document.getElementById('menu-header');
+        const main = document.getElementById('menu-content');
+        let lastScroll = 0;
+
+        main.addEventListener('scroll', () => {
+            const current = main.scrollTop;
+            if (current > lastScroll && current > 50) header.style.transform = 'translateY(-100%)';
+            else header.style.transform = 'translateY(0)';
+            lastScroll = current;
+        });
+
+        function toggleSection(btn) {
+            const parent = btn.closest('.menu-item');
+            if (!parent) return;
+            const wasActive = parent.classList.contains('active');
+            parent.classList.toggle('active');
+            
+            if (!wasActive) {
+                setTimeout(() => {
+                    const targetScroll = parent.offsetTop - 150;
+                    main.scrollTo({ top: targetScroll, behavior: 'smooth' });
+                }, 100);
+            }
+        }
+    </script>
+</body>
+</html>
