@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
     
     <style>
+        :root {
+        color-scheme: light;
+        }
         /* ==========================================
            FRAME & LAYOUT (Consistency with all pages)
            ========================================== */
@@ -177,17 +180,17 @@
 
     <div id="main-container">
 
-        <nav class="nav-container">
-            <div class="nav-glass">
-                <a href="bar.html" class="btn-nav">Bar</a>
-                <a href="ristorante.html" class="btn-nav">Ristorante</a>
-                <a href="pizzeria.html" class="btn-nav">Pizzeria</a>
-                <a href="vini.html" class="btn-nav active-page">Vini</a>
-            </div>
-        </nav>
+        <div class="nav-container">
+            <nav class="nav-glass">
+                <div class="btn-nav" onclick="goTo('bar.html')">Bar</div>
+                <div class="btn-nav" onclick="goTo('ristorante.html')">Ristorante</div>
+                <div class="btn-nav" onclick="goTo('pizzeria.html')">Pizza</div>
+                <div class="btn-nav active-page" onclick="goTo('vini.html')">Vini</div>
+            </nav>
+        </div>
 
         <header id="menu-header" class="bg-white shadow-sm overflow-hidden">
-            <img src="images/ristorante.jpg" alt="Vini Header" class="w-full h-full object-cover block">
+            <img src="images/vini.jpg" alt="Vini Header" class="w-full h-full object-cover block">
             <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-black/40"></div>
             <div class="absolute bottom-3 left-4">
                 <h1 class="text-3xl font-[900] text-gray-900 tracking-tighter uppercase">Vini</h1>
@@ -214,11 +217,14 @@
         // 1. Language Logic
         const urlParams = new URLSearchParams(window.location.search);
         const lang = urlParams.get('lang') || 'it';
+        function goTo(pageName) {window.location.href = `${pageName}?lang=${lang}`;}
         const footer = document.getElementById('mountain-footer');
+
+
         
-        if(lang === 'en') footer.style.backgroundImage = "url('../../images/footer-en.png')";
-        else if(lang === 'de') footer.style.backgroundImage = "url('../../images/footer-deutsch.png')";
-        else footer.style.backgroundImage = "url('../../images/footer-it.png')";
+        if(lang === 'en') footer.style.backgroundImage = "url('images/footer-en.png')";
+        else if(lang === 'de') footer.style.backgroundImage = "url('images/footer-deutsch.png')";
+        else footer.style.backgroundImage = "url('images/footer-it.png')";
 
         // 2. Load Section Logic
         async function loadSection(id, path) {
@@ -232,7 +238,14 @@
         }
 
         window.onload = () => {
-            loadSection('bollicine', 'sections/vini/bollicine.html');
+            // Defines the path based on the language (it, en, or de)
+            const langPath = `sections/${lang}/vini/`;
+
+            // Load each section of the Wine menu
+            loadSection('bollicine', `${langPath}bollicine.html`);
+            loadSection('bianchi', `${langPath}bianchi.html`);
+            loadSection('rossi', `${langPath}rossi.html`);
+            loadSection('rosati', `${langPath}rosati.html`);
         };
 
         // 3. Footer Toggle Logic

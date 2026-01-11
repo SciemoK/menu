@@ -1,0 +1,55 @@
+<div class="menu-item group">
+    <button onclick="toggleSection(this)" class="w-full relative h-16 flex items-center justify-between overflow-hidden group px-6 rounded-t-[25px] rounded-b-[25px] group-[.active]:rounded-b-none transition-all duration-300 shadow-lg">
+        <div class="absolute inset-0 bg-[#333333]"></div>
+        
+        <div class="relative z-10 text-left">
+            <span class="block text-white font-black text-xl tracking-tighter uppercase">Pizze Fornarine</span>
+            <span class="block text-gray-400 text-[9px] uppercase tracking-[0.2em] font-bold">Le Nostre Fornarine</span>
+        </div>
+
+        <div class="relative z-10 border border-white/10 p-1.5 rounded-full bg-white/5">
+            <svg class="chevron w-4 h-4 text-white transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/>
+            </svg>
+        </div>
+    </button>
+
+    <div class="accordion-content">
+        <div class="bg-white rounded-b-[25px] p-6 shadow-sm border-t border-gray-50 space-y-8">
+            
+            <div class="flex justify-between items-baseline group border-b border-gray-100 pb-4">
+                <div class="pr-8">
+                    <h3 class="text-xl font-serif font-bold text-gray-900">Fornarina Classica</h3>
+                    <p class="text-sm text-gray-600 mt-1 font-light leading-relaxed">Classica</p>
+                    <span class="inline-block mt-2 text-[10px] text-gray-400 border border-gray-200 px-1.5 py-0.5 rounded">Allergeni: 1, 7</span>
+                </div>
+                <div class="whitespace-nowrap">
+                    <span class="text-lg font-serif font-bold accent-text">€ 6,00</span>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-baseline group border-b border-gray-100 pb-4">
+                <div class="pr-8">
+                    <h3 class="text-xl font-serif font-bold text-gray-900">Fornarina Emiliana</h3>
+                    <p class="text-sm text-gray-600 mt-1 font-light leading-relaxed">Emiliana, crudo in uscita</p>
+                    <span class="inline-block mt-2 text-[10px] text-gray-400 border border-gray-200 px-1.5 py-0.5 rounded">Allergeni: 1, 7</span>
+                </div>
+                <div class="whitespace-nowrap">
+                    <span class="text-lg font-serif font-bold accent-text">€ 8,50</span>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-baseline group border-b border-gray-100 pb-4">
+                <div class="pr-8">
+                    <h3 class="text-xl font-serif font-bold text-gray-900">Fornarina Light</h3>
+                    <p class="text-sm text-gray-600 mt-1 font-light leading-relaxed">Pomodorini, rucola in uscita</p>
+                    <span class="inline-block mt-2 text-[10px] text-gray-400 border border-gray-200 px-1.5 py-0.5 rounded">Allergeni: 1, 7</span>
+                </div>
+                <div class="whitespace-nowrap">
+                    <span class="text-lg font-serif font-bold accent-text">€ 8,50</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

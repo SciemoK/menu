@@ -21,13 +21,22 @@
             </lottie-player>
         </div>
 
-        <div id="language-page" class="page">
-            <div class="menu-pill-container">
-                <button class="lang-btn active" onclick="selectLang('it')">BAR</button>
-                <button class="lang-btn" onclick="selectLang('en')">EN</button>
-                <button class="lang-btn" onclick="selectLang('de')">DE</button>
-            </div>
+    <div id="language-page" class="page">
+        <div class="nature-pill-container">
+            <button class="nature-btn it" onclick="selectLang('it')">
+                <span class="btn-text">Italiano</span>
+                <div class="grass-layer"></div>
+            </button>
+            <button class="nature-btn en" onclick="selectLang('en')">
+                <span class="btn-text">English</span>
+                <div class="grass-layer"></div>
+            </button>
+            <button class="nature-btn de" onclick="selectLang('de')">
+                <span class="btn-text">Deutsch</span>
+                <div class="grass-layer"></div>
+            </button>
         </div>
+    </div>
 
         <div id="page-overlay" onclick="toggleFooter()"></div>
 
@@ -53,7 +62,7 @@
         */
         setTimeout(() => {
             footer.classList.add("visible");
-        }, 2000); 
+        }, 5000); 
 
         /* TIMING 2: ANIMATION ENDS 
            Transition from the video to the language buttons.
@@ -100,7 +109,7 @@
             // 1. Show the mountain peaks (Peeking state)
             footer.classList.add("visible");
 
-            // 2. Set the correct footer image based on language
+            // 2. Set the correct footer image based on language (updated paths)
             if (lang === 'it') {
                 footer.style.backgroundImage = "url('images/footer-it.png')";
             } else if (lang === 'en') {
@@ -109,11 +118,11 @@
                 footer.style.backgroundImage = "url('images/footer-deutsch.png')";
             }
 
-            // 3. Jump to the Italian Menu
-            // This looks for the 'ita' folder, then 'digital-menu' folder, then the pizzeria.html
+            // 3. Jump to the Menu WITH the language parameter
             setTimeout(() => {
-                window.location.href = "bar.html";
-            }, 600); // Slight delay so the user sees the button click/footer rise
+                // We add ?lang= so the next page knows what to load
+                window.location.href = `bar.html?lang=${lang}`;
+            }, 6000); 
         }
     </script>
 </body>
