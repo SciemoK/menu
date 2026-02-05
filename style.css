@@ -1,0 +1,166 @@
+
+
+/* =========================================
+   1. CORE LAYOUT
+   ========================================= */
+:root { color-scheme: light; }
+
+body, html {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    background-color: #1a1a1a; 
+    display: flex; justify-content: center; align-items: center; 
+    font-family: 'Inter', sans-serif; overflow: hidden;
+}
+
+#main-container {
+    width: 90vw; max-width: 400px; aspect-ratio: 1440 / 2560;
+    max-height: 92vh; background-color: #ffffff;
+    position: relative; overflow: hidden; border-radius: 30px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+
+/* Hide Scrollbars */
+* { scrollb
+    ar-width: none; -ms-overflow-style: none; }
+*::-webkit-scrollbar { display: none; }
+
+/* =========================================
+   2. PAGES & SLIDING
+   ========================================= */
+.page { 
+    position: absolute; inset: 0; width: 100%; height: 100%; 
+    transition: opacity 0.6s ease; z-index: 10; background: white;
+}
+
+#content-wrapper { 
+    position: absolute; inset: 0; padding-top: 0; overflow: hidden; 
+    height: 100%; width: 100%; z-index: 1; 
+}
+
+.content-section {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    background: white; overflow: hidden; 
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
+}
+
+.slide-right { transform: translateX(100%); }
+.slide-left { transform: translateX(-100%); }
+.slide-active { transform: translateX(0); }
+
+/* =========================================
+   3. HEADER PUSH-UP EFFECT
+   ========================================= */
+/* Ensure the text container handles the transition */
+.header-text-container {
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+/* When the header is minimized, fade out the text */
+.fixed-header.minimized .header-text-container {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
+
+/* Ensure the header transition remains smooth */
+/* In your style.css */
+.fixed-header {
+    height: 180px;
+    transition: height 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fixed-header.minimized {
+    height: 90px;
+}
+
+.menu-body {
+    /* Matches the header transition speed */
+    transition: padding-top 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* =========================================
+   4. NAVIGATION
+   ========================================= */
+.nav-container { 
+    width: 100%; display: flex; justify-content: center; 
+    padding: 25px 0; z-index: 1000; position: absolute; top: 0; pointer-events: none;
+}
+
+.nav-glass { 
+    position: relative; display: flex; align-items: center; justify-content: space-around; 
+    background: rgba(240, 240, 240, 0.85); border-radius: 100px; padding: 6px; 
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    pointer-events: auto; width: 92%; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.btn-nav { 
+    position: relative; z-index: 2; flex: 1; text-align: center; padding: 12px 0; 
+    cursor: pointer; font-size: 13px; font-weight: 900; 
+    
+    /* 1. STARTING COLOR (Inactive/Dark) */
+    color: #000000; 
+    
+    text-transform: uppercase; letter-spacing: 0.5px;
+    
+    /* 2. FAST RETURN: When you leave a tab, it turns back to dark quickly (0.2s) */
+    transition: color 1s ease;
+}
+
+.btn-nav.active-page { 
+    /* 3. END COLOR (White) */
+    color: white !important; 
+    transition: color 0.3s ease 1.0s;
+    /* 4. SLOW FADE IN: It takes 1.5 seconds to turn white */
+}
+
+.nav-indicator { 
+    position: absolute; height: calc(100% - 12px); top: 6px; z-index: 1; 
+    background: #000; border-radius: 100px; 
+    transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1), width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* =========================================
+   5. FOOTER & PROMO
+   ========================================= */
+#mountain-footer {
+    position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; z-index: 2000;
+    background-size: contain; background-repeat: no-repeat; background-position: top;
+    transform: translateY(100%); transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+#mountain-footer.visible { transform: translateY(76%); }
+#mountain-footer.open { transform: translateY(17%); }
+
+#footer-arrow { 
+    position: absolute; top: 110px; left: 50%; transform: translateX(-50%); 
+    width: 45px; height: 45px; background: rgba(255,255,255,0.8); border-radius: 50%; 
+    display: flex; justify-content: center; align-items: center; cursor: pointer; 
+    pointer-events: auto; font-weight: bold; font-size: 20px; transition: top 0.6s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+#mountain-footer.open #footer-arrow { top: 15px; }
+
+#hotel-promo {
+    position: absolute; bottom: 21.5%; left: 50%; transform: translateX(-49.5%);
+    width: 100%; max-width: 335px; opacity: 0; pointer-events: none;
+    transition: opacity 0.8s ease 0.2s; z-index: 5;
+}
+
+#hotel-promo img { width: 100%; display: block; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2)); }
+
+#mountain-footer.open #hotel-promo { opacity: 1; pointer-events: auto; }
+
+#page-overlay {
+    position: absolute; inset: 0; background: rgba(0,0,0,0.4); 
+    display: none; z-index: 1500; opacity: 0; transition: opacity 0.5s ease;
+}
+#page-overlay.active { display: block; opacity: 1; backdrop-filter: blur(8px); }
+
+/* Language Selection */
+.lang-btn {
+    background: rgba(0,0,0,0.8); color: white; padding: 16px 40px; 
+    border-radius: 50px; font-weight: 900; font-size: 13px; border: none;
+    letter-spacing: 2px; cursor: pointer; transition: transform 0.1s;
+}
+.lang-btn:active { transform: scale(0.95); }

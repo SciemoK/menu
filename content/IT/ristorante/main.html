@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menù Ristorante</title>
+    <script src="../../../script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body { 
+            font-family: 'Lora', serif;
+            background: linear-gradient(135deg, #f8f6f1 0%, #f5f2ed 100%);
+            color: #2a2a2a;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 1rem 1rem 0.75rem;
+            border-bottom: 2px solid #8B7355;
+            background: linear-gradient(180deg, rgba(139, 115, 85, 0.02) 0%, transparent 100%);
+            position: relative;
+        }
+        
+        .header::before {
+            content: '✦';
+            display: inline;
+            color: #8B7355;
+            font-size: 0.8rem;
+            margin: 0 0.5rem;
+            opacity: 0.6;
+        }
+        
+        .header h1 {
+            display: none;
+        }
+        
+        .header p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            color: #8B7355;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: inline;
+        }
+        
+        .header::after {
+            content: '✦';
+            display: inline;
+            color: #8B7355;
+            font-size: 0.8rem;
+            margin: 0 0.5rem;
+            opacity: 0.6;
+        }
+        
+        .menu-container {
+            padding: 1rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        button {
+            padding: 1.2rem 1.25rem;
+            background: linear-gradient(135deg, #5c4a3d 0%, #4a3a2a 100%);
+            color: #f5f5f5;
+            border: 2px solid #8B7355;
+            border-radius: 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .afternoon-menu-btn {
+            padding: 0.6rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #a8a8a8 0%, #9a9a9a 100%);
+            color: #f5f5f5;
+            border: 1px solid #888;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            align-self: center;
+        }
+        
+        .afternoon-menu-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #b8b8b8 0%, #aaaaaa 100%);
+            color: #fff;
+        }
+        
+        .afternoon-menu-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(139, 115, 85, 0.2);
+            transition: left 0.5s ease;
+            z-index: 0;
+        }
+        
+        button span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            border-color: #d4af37;
+            color: #e8d7b3;
+        }
+        
+        button:hover::before {
+            left: 0;
+        }
+        
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .content {
+            padding: 1.5rem;
+            background: #fefdfb;
+            border: 1px solid #e8dcc8;
+            border-radius: 2px;
+            display: none;
+            animation: fadeSlideDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            margin-top: -0.8rem;
+            position: relative;
+            z-index: 10;
+        }
+        
+        @keyframes fadeSlideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-15px);
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                max-height: 3000px;
+            }
+        }
+        
+        /* Decorative separator */
+        .menu-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #8B7355, transparent);
+            opacity: 0.3;
+            margin: 0.25rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Menù</h1>
+            <p>Ristorazione</p>
+        </div>
+        
+        <div class="menu-container">
+            <a href="https://olimpiadi-menu.vercel.app/" class="afternoon-menu-btn" target="_blank">📍 Menu Pomeridiano</a>
+            
+            <button id="btn-antipasti" onclick="clickButton(this); toggleAntipasti();"><span>Antipasti</span></button>
+            <div id="antipasti-content" class="content"></div>
+            <div class="menu-divider"></div>
+            
+            <button id="btn-primi" onclick="clickButton(this); togglePrimi();"><span>Primi Piatti</span></button>
+            <div id="primi-content" class="content"></div>
+            <div class="menu-divider"></div>
+            
+            <button id="btn-secondi" onclick="clickButton(this); toggleSecondi();"><span>Secondi Piatti</span></button>
+            <div id="secondi-content" class="content"></div>
+            <div class="menu-divider"></div>
+            
+            <button id="btn-bambini" onclick="clickButton(this); toggleBambini();"><span>Menù Bambini</span></button>
+            <div id="bambini-content" class="content"></div>
+            <div class="menu-divider"></div>
+            
+            <button id="btn-zuppe" onclick="clickButton(this); toggleZuppe();"><span>Zuppe</span></button>
+            <div id="zuppe-content" class="content"></div>
+            <div class="menu-divider"></div>
+            
+            <button id="btn-insalate" onclick="clickButton(this); toggleInsalate();"><span>Insalate</span></button>
+            <div id="insalate-content" class="content"></div>
+            <div class="menu-divider"></div>
+            
+            <button id="btn-contorni" onclick="clickButton(this); toggleContorni();"><span>Contorni</span></button>
+            <div id="contorni-content" class="content"></div>
+        </div>
+    </div>
+</body>
+</html>

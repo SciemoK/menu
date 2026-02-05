@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta dei Vini</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #fff;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #D4AF37;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #b8a88a;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .header .menu-info {
+            font-size: 0.95rem;
+            color: #999;
+            letter-spacing: 1px;
+        }
+        
+        .buttons-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        
+        button {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border: 2px solid;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
+        }
+        
+        .btn-bollicine {
+            background: rgba(212, 175, 55, 0.15);
+            border-color: #D4AF37;
+            color: #D4AF37;
+        }
+        
+        .btn-bollicine:hover {
+            background: rgba(212, 175, 55, 0.25);
+        }
+        
+        .btn-rosati {
+            background: rgba(194, 84, 127, 0.15);
+            border-color: #C2547F;
+            color: #C2547F;
+        }
+        
+        .btn-rosati:hover {
+            background: rgba(194, 84, 127, 0.25);
+        }
+        
+        .btn-rossi {
+            background: rgba(114, 47, 55, 0.15);
+            border-color: #722F37;
+            color: #722F37;
+        }
+        
+        .btn-rossi:hover {
+            background: rgba(114, 47, 55, 0.25);
+        }
+        
+        .btn-bianchi {
+            background: rgba(245, 241, 222, 0.15);
+            border-color: #F5F1DE;
+            color: #F5F1DE;
+        }
+        
+        .btn-bianchi:hover {
+            background: rgba(245, 241, 222, 0.25);
+        }
+        
+        .content-area {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        #bollicine-content,
+        #rosati-content,
+        #rossi-content,
+        #bianchi-content {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Carta dei Vini</h1>
+        <p class="subtitle">"I veri intenditori non bevono vino... degustano segreti"</p>
+        <p class="menu-info">Il nostro menù gourmet e pizzeria</p>
+    </div>
+    
+    <div class="buttons-container">
+        <button class="btn-bollicine" onclick="toggleBollicine()">Bollicine</button>
+        <button class="btn-rosati" onclick="toggleRosati()">Vini Rosati</button>
+        <button class="btn-rossi" onclick="toggleRossi()">Vini Rossi</button>
+        <button class="btn-bianchi" onclick="toggleBianchi()">Vini Bianchi</button>
+    </div>
+    
+    <div class="content-area">
+        <div id="bollicine-content"></div>
+        <div id="rosati-content"></div>
+        <div id="rossi-content"></div>
+        <div id="bianchi-content"></div>
+    </div>
+</body>
+</html>

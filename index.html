@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Digital Menu</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="main-container">
+        
+        <div id="animation-page" class="page">
+            <lottie-player id="introLottie" src="images/welcome.json" speed="1" style="width:100%; height:100%; object-fit:cover;" autoplay></lottie-player>
+        </div>
+
+        <div id="language-page" class="page" style="display:none; opacity:0; flex-direction:column; justify-content:center; align-items:center; gap: 20px;">
+            <button class="lang-btn" onclick="selectLang('it')">ITALIANO</button>
+            <button class="lang-btn" onclick="selectLang('en')">ENGLISH</button>
+        </div>
+
+        <div id="menu-page" class="page" style="display:none; opacity:0;">
+            
+            <div class="nav-container">
+                <nav class="nav-glass">
+                    <div class="nav-indicator"></div>
+                    <div class="btn-nav active-page" onclick="navigateTo(0, this)">Bar</div>
+                    <div class="btn-nav" onclick="navigateTo(1, this)">Risto</div>
+                    <div class="btn-nav" onclick="navigateTo(2, this)">Pizza</div>
+                    <div id="tab-vini" class="btn-nav" onclick="navigateTo(3, this)">Vini</div>
+                </nav>
+            </div>
+
+            <div id="content-wrapper">
+                </div>
+        </div>
+
+        <div id="page-overlay" onclick="toggleFooter()"></div>
+        
+        <div id="mountain-footer">
+            <div id="footer-arrow" onclick="toggleFooter()">↑</div>
+            
+            <a href="https://custom-cursor.com/fr/collection/spongebob/sb-monkey-spongebob" 
+            target="_blank" 
+            id="hotel-promo">
+                <img src="images/hotel-it.png" alt="Hotel Promo">
+            </a>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
